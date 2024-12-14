@@ -51,7 +51,7 @@ namespace SV
 
             var aimQuaternion = quaternion.LookRotationSafe(new float3(aim.y, -aim.x, 0f), new float3(0f, 0f, 1f));
 
-            foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health) in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, RefRW<Health> >())
+            foreach (var (rigidbody, impulseBuffer, transform, player, health) in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, RefRW<Health> >())
             {
                 rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.ValueRO.health, 0.001f);
 
