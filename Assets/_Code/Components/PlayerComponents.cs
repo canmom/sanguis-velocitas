@@ -6,15 +6,12 @@ using Unity.Mathematics;
 
 namespace SV
 {
-    public struct PlayerTag : IComponentData
-    {
-    }
-
-    public struct InputSettings : IComponentData
+    public struct Player : IComponentData
     {
         public float rotationSpeed;
         public float rotationSharpness;
         public float thrustForce;
+        public Entity camera;
     }
 
     public struct Health : IComponentData

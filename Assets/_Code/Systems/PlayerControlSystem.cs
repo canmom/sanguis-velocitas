@@ -6,6 +6,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
+using SV.Input;
 
 using static Unity.Entities.SystemAPI;
 
@@ -50,7 +51,7 @@ namespace SV
 
             var aimQuaternion = quaternion.LookRotationSafe(new float3(aim.y, -aim.x, 0f), new float3(0f, 0f, 1f));
 
-            foreach ((var transform, var rigidbody, var impulseBuffer, var inputSettings) in Query<WorldTransform, RefRW<RigidBody>, DynamicBuffer<AddImpulse>, InputSettings >().WithAll<PlayerTag>())
+            foreach ((var rigidbody, var impulseBuffer, var transform, var player) in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player >())
             {
                 var mass = 1f/rigidbody.ValueRO.inverseMass;
 
@@ -58,16 +59,23 @@ namespace SV
 
                 //quaternion difference should always be around the z axis, so we should be able to ignore other components
                 //value is proportional to the sine of the angle
-                var targetAngularVelocity = new float3(0f, 0f, inputSettings.rotationSpeed * math.sign(quaternionDifference.value.z));
+                var targetAngularVelocity = new float3(0f, 0f, player.rotationSpeed * math.sign(quaternionDifference.value.z));
                 rigidbody.ValueRW.velocity.angular = targetAngularVelocity +
                     (rigidbody.ValueRO.velocity.angular - targetAngularVelocity)
-                    * math.exp( -inputSettings.rotationSharpness * SystemAPI.Time.DeltaTime);
+                    * math.exp( -player.rotationSharpness * SystemAPI.Time.DeltaTime);
 
 
                 if (thrust > 0f)
                 {
-                    impulseBuffer.Add(new AddImpulse(inputSettings.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
+                    impulseBuffer.Add(new AddImpulse(player.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
                 }
+
+                var cameraTransform = SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform;
+
+                cameraTransform.position.x = transform.position.x;
+                cameraTransform.position.y = transform.position.y;
+
+                SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform = cameraTransform;
 
                 // Trick to add torque (apply a linear impulse in the opposite direction of the point impulse)
                 // This example shows clockwise torque.

@@ -40,7 +40,7 @@ namespace Latios.Psyshock.Anna.Systems
                 deltaTime        = Time.DeltaTime,
                 inverseDeltaTime = math.rcp(Time.DeltaTime),
                 enemyTagLookup   = GetComponentLookup<EnemyTag>(true),
-                playerTagLookup  = GetComponentLookup<PlayerTag>(true),
+                playerLookup  = GetComponentLookup<Player>(true),
             };
             state.Dependency = Physics.FindPairs(in rigidBodyLayer, in findBodyBodyProcessor).
                                ScheduleParallelUnsafe(state.Dependency);
@@ -49,7 +49,7 @@ namespace Latios.Psyshock.Anna.Systems
 
         struct FindBodyVsBodyProcessor : IFindPairsProcessor
         {
-            [ReadOnly] public ComponentLookup<PlayerTag>          playerTagLookup;
+            [ReadOnly] public ComponentLookup<Player>          playerLookup;
             [ReadOnly] public ComponentLookup<EnemyTag>           enemyTagLookup;
             [ReadOnly] public NativeArray<CapturedRigidBodyState> states;
             public PairStream.ParallelWriter                      pairStream;
@@ -61,7 +61,7 @@ namespace Latios.Psyshock.Anna.Systems
             public void Execute(in FindPairsResult result)
             {
                 bool isEnemy  = enemyTagLookup.HasComponent(result.entityA) || enemyTagLookup.HasComponent(result.entityB);
-                bool isPlayer = playerTagLookup.HasComponent(result.entityA) || playerTagLookup.HasComponent(result.entityB);
+                bool isPlayer = playerLookup.HasComponent(result.entityA) || playerLookup.HasComponent(result.entityB);
                 if (isEnemy && isPlayer)
                     return;
 

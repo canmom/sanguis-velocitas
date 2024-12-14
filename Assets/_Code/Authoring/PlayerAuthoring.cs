@@ -12,6 +12,7 @@ namespace SV
         public float rotationSpeed = 1f;
         public float rotationSharpness = 15f;
         public float thrustForce   = 1f;
+        public Transform mainCamera;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
@@ -19,14 +20,14 @@ namespace SV
         public override void Bake(PlayerAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent<PlayerTag>(entity);
-            AddComponent(           entity, new Health { health = authoring.initialHealth });
-            AddComponent(           entity, new InputSettings
-                                                    {
-                                                          rotationSpeed = authoring.rotationSpeed,
-                                                      rotationSharpness = authoring.rotationSharpness,
-                                                            thrustForce = authoring.thrustForce
-                                                    });
+            AddComponent(entity, new Health { health = authoring.initialHealth });
+            AddComponent(entity, new Player
+                {
+                      rotationSpeed = authoring.rotationSpeed,
+                  rotationSharpness = authoring.rotationSharpness,
+                        thrustForce = authoring.thrustForce,
+                             camera = GetEntity(authoring.mainCamera, TransformUsageFlags.Dynamic)
+                });
         }
     }
 }
