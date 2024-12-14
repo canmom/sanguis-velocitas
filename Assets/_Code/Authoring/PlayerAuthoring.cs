@@ -22,7 +22,7 @@ namespace SV
         public override void Bake(PlayerAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new Health { health = authoring.initialHealth });
+            AddComponent(entity, new Health { currentHealth = authoring.initialHealth });
             AddComponent(entity, new Player
                 {
                            rotationSpeed = authoring.rotationSpeed,

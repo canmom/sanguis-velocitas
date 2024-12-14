@@ -53,7 +53,7 @@ namespace SV
 
             foreach (var (rigidbody, impulseBuffer, transform, player, health) in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, RefRW<Health> >())
             {
-                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.ValueRO.health, 0.001f);
+                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.ValueRO.currentHealth, 0.001f);
 
                 var quaternionDifference = math.mul(math.inverse(transform.rotation), aimQuaternion);
 
@@ -68,7 +68,7 @@ namespace SV
                 if (thrust > 0f)
                 {
                     impulseBuffer.Add(new AddImpulse(player.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
-                    health.ValueRW.health -= player.healthFlowRate * SystemAPI.Time.DeltaTime;
+                    health.ValueRW.currentHealth -= player.healthFlowRate * SystemAPI.Time.DeltaTime;
                 }
 
                 impulseBuffer.Add(new AddImpulse(- rigidbody.ValueRO.velocity.linear * player.dragCoefficient * SystemAPI.Time.DeltaTime));

@@ -9,7 +9,7 @@ namespace SV
     public struct UiValues : IComponentData
     {
         public float health;
-        public int   goalHealth;
+        public float   goalHealth;
     }
 
     public struct UiReferences : IComponentData

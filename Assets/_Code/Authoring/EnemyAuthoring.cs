@@ -16,6 +16,7 @@ namespace SV
         {
             var entity = GetEntity(TransformUsageFlags.None);
             AddComponent<EnemyTag>(entity);
+      
         }
     }
 }

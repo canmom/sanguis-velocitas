@@ -67,7 +67,7 @@ namespace SV
                     }
                 }
 
-                health.health -= damage * dt;
+                health.currentHealth -= damage * dt;
             }
         }
     }
