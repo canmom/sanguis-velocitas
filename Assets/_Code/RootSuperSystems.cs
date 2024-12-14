@@ -39,6 +39,7 @@ namespace SV
         protected override void CreateSystems()
         {
             GetOrCreateAndAddManagedSystem<TransformSuperSystem>();
+            GetOrCreateAndAddUnmanagedSystem<ResetDamageThisFrameSystem>();
         }
     }
 
@@ -62,9 +63,11 @@ namespace SV
         protected override void CreateSystems()
         {
             GetOrCreateAndAddUnmanagedSystem<DropOnDeathCopyTransformSystem>();
+            GetOrCreateAndAddUnmanagedSystem<CollectHealthDropSystem>();
             GetOrCreateAndAddUnmanagedSystem<ActivateHealthDropSystem>();
             GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemeySystem>();
             GetOrCreateAndAddUnmanagedSystem<AoEDamagePlayerSystem>();
+            GetOrCreateAndAddUnmanagedSystem<ApplyDamageToHealthSystem>();
             GetOrCreateAndAddUnmanagedSystem<UiSystem>();
         }
     }

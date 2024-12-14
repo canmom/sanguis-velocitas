@@ -60,8 +60,8 @@ namespace SV
                 var search = Physics.AabbFrom(collider, transform.worldTransform);
                 foreach (var hit in Physics.FindObjects(search, layer))
                 {
-                    if (!Physics.DistanceBetween(collider, transform.worldTransform, hit.collider, hit.transform, 0f,
-                            out _))
+                    if (Physics.DistanceBetween(collider, transform.worldTransform, hit.collider, hit.transform, 1f,
+                            out var result))
                     {
                         canBeCollectedLookup.SetComponentEnabled(hit.entity, true);
                         Debug.Log("can be collected now");

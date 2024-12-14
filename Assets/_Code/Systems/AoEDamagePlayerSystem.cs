@@ -54,7 +54,7 @@ namespace SV
             [ReadOnly] public ComponentLookup<AoE> aoeLookup;
             public float                           dt;
 
-            public void Execute(ref Health health, in WorldTransform transform, in Collider collider)
+            public void Execute(ref DamageThisFrame damageThisFrame, in WorldTransform transform, in Collider collider)
             {
                 var   search = Physics.AabbFrom(collider, transform.worldTransform);
                 float damage = 0f;
@@ -67,11 +67,12 @@ namespace SV
                     }
                 }
 
+                damageThisFrame.damageFromPoison += damage * dt;
                 // Subtract health, but only if we haven't finished the level yet. Otherwise, clamp it.
-                if (health.currentHealth < health.maxHealth)
-                    health.currentHealth -= damage * dt;
-                else
-                    health.currentHealth = health.maxHealth;
+                //if (health.health < health.goalHealth)
+                //    health.health -= damage * dt;
+                //else
+                //    health.health = health.goalHealth;
             }
         }
     }

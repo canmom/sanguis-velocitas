@@ -22,6 +22,12 @@ namespace SV
         public float maxHealth;
     }
 
+    public struct DamageThisFrame : IComponentData
+    {
+        public float damageFromPropulsion;
+        public float damageFromPoison;
+    }
+
     public struct PlayerAttackColliderTag : IComponentData
     {
     }
