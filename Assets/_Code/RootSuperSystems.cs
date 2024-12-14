@@ -63,6 +63,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<DropOnDeathCopyTransformSystem>();
             GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemeySystem>();
             GetOrCreateAndAddUnmanagedSystem<AoEDamagePlayerSystem>();
+            GetOrCreateAndAddUnmanagedSystem<UiSystem>();
         }
     }
 }
