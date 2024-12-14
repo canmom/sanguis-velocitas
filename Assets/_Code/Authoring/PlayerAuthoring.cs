@@ -12,6 +12,7 @@ namespace SV
         public float rotationSpeed = 1f;
         public float rotationSharpness = 15f;
         public float thrustForce   = 1f;
+        public float dragCoefficient = 0.2f;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
@@ -24,7 +25,8 @@ namespace SV
                 {
                       rotationSpeed = authoring.rotationSpeed,
                   rotationSharpness = authoring.rotationSharpness,
-                        thrustForce = authoring.thrustForce
+                        thrustForce = authoring.thrustForce,
+                    dragCoefficient = authoring.dragCoefficient,
                 });
         }
     }

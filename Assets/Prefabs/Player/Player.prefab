@@ -281,7 +281,8 @@ MonoBehaviour:
   initialHealth: 10
   rotationSpeed: 5
   rotationSharpness: 15
-  thrustForce: 10
+  thrustForce: 15
+  dragCoefficient: 0.1
 --- !u!114 &688934801551841805
 MonoBehaviour:
   m_ObjectHideFlags: 0

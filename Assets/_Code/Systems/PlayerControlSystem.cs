@@ -70,17 +70,7 @@ namespace SV
                     impulseBuffer.Add(new AddImpulse(player.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
                 }
 
-                //var cameraTransform = SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform;
-
-                //cameraTransform.position.x = transform.position.x;
-                //cameraTransform.position.y = transform.position.y;
-
-                //SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform = cameraTransform;
-
-                // Trick to add torque (apply a linear impulse in the opposite direction of the point impulse)
-                // This example shows clockwise torque.
-                //impulseBuffer.Add(new AddImpulse(transform.position + math.up(), math.right() * SystemAPI.Time.DeltaTime));
-                //impulseBuffer.Add(new AddImpulse(-math.right() * SystemAPI.Time.DeltaTime));
+                impulseBuffer.Add(new AddImpulse(- rigidbody.ValueRO.velocity.linear * player.dragCoefficient * SystemAPI.Time.DeltaTime));
             }
         }
     }
