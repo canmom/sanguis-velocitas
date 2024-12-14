@@ -13,6 +13,7 @@ namespace SV
     public struct InputSettings : IComponentData
     {
         public float rotationSpeed;
+        public float rotationSharpness;
         public float thrustForce;
     }
 
