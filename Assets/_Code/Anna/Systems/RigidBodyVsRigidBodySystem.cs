@@ -1,4 +1,5 @@
 using Latios.Transforms;
+using SV;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -37,7 +38,9 @@ namespace Latios.Psyshock.Anna.Systems
                 states           = states,
                 pairStream       = pairStream.AsParallelWriter(),
                 deltaTime        = Time.DeltaTime,
-                inverseDeltaTime = math.rcp(Time.DeltaTime)
+                inverseDeltaTime = math.rcp(Time.DeltaTime),
+                enemyTagLookup   = GetComponentLookup<EnemyTag>(true),
+                playerTagLookup  = GetComponentLookup<PlayerTag>(true),
             };
             state.Dependency = Physics.FindPairs(in rigidBodyLayer, in findBodyBodyProcessor).
                                ScheduleParallelUnsafe(state.Dependency);
@@ -46,6 +49,8 @@ namespace Latios.Psyshock.Anna.Systems
 
         struct FindBodyVsBodyProcessor : IFindPairsProcessor
         {
+            [ReadOnly] public ComponentLookup<PlayerTag>          playerTagLookup;
+            [ReadOnly] public ComponentLookup<EnemyTag>           enemyTagLookup;
             [ReadOnly] public NativeArray<CapturedRigidBodyState> states;
             public PairStream.ParallelWriter                      pairStream;
             public float                                          deltaTime;
@@ -55,6 +60,11 @@ namespace Latios.Psyshock.Anna.Systems
 
             public void Execute(in FindPairsResult result)
             {
+                bool isEnemy  = enemyTagLookup.HasComponent(result.entityA) || enemyTagLookup.HasComponent(result.entityB);
+                bool isPlayer = playerTagLookup.HasComponent(result.entityA) || playerTagLookup.HasComponent(result.entityB);
+                if (isEnemy && isPlayer)
+                    return;
+
                 var              statesSpan = states.AsReadOnlySpan();
                 ref readonly var rigidBodyA = ref statesSpan[result.sourceIndexA];
                 ref readonly var rigidBodyB = ref statesSpan[result.sourceIndexB];

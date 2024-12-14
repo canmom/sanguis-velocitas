@@ -263,7 +263,7 @@ namespace Latios.Psyshock.Anna.Systems
                         var index                      = data.srcIndex;
                         var inertialPoseWorldTransform = data.inertialPoseWorldTransform;
                         var axes                       = data.lockFlags;
-                        var positions                  = axes.packedFlags & 0x7f;
+                        var positions                  = axes.packedFlags & 0x7;
                         if (positions != 0)
                         {
                             var     bools      = positions == new int3(1, 2, 4);
