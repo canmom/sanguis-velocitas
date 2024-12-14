@@ -19,6 +19,7 @@ namespace SV
     public struct Health : IComponentData
     {
         public float health;
+        public float goalHealth;
     }
 
     public struct PlayerAttackColliderTag : IComponentData

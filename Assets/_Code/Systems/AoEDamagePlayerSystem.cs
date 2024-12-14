@@ -67,7 +67,11 @@ namespace SV
                     }
                 }
 
-                health.health -= damage * dt;
+                // Subtract health, but only if we haven't finished the level yet. Otherwise, clamp it.
+                if (health.health < health.goalHealth)
+                    health.health -= damage * dt;
+                else
+                    health.health = health.goalHealth;
             }
         }
     }
