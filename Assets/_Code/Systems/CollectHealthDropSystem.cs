@@ -24,7 +24,7 @@ namespace SV
         {
             latiosWorld = state.GetLatiosWorldUnmanaged();
             handles = new BuildCollisionLayerTypeHandles(ref state);
-            query = state.Fluent().With<HealthDrop>(true).PatchQueryForBuildingCollisionLayer().Build();
+            query = state.Fluent().With<HealthDrop>(true).WithEnabled<CanBeCollected>().PatchQueryForBuildingCollisionLayer().Build();
         }
 
         [BurstCompile]

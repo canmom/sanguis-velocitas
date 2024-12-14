@@ -58,10 +58,13 @@ namespace SV
             public void Execute(ref Health health, in WorldTransform transform, in Collider collider, in Player player)
             {
                 var search = Physics.AabbFrom(collider, transform.worldTransform);
+                var maxDistance = 0.001f;
+                search.min -= maxDistance;
+                search.max += maxDistance;
                 foreach (var hit in Physics.FindObjects(search, layer))
                 {
-                    if (Physics.DistanceBetween(collider, transform.worldTransform, hit.collider, hit.transform, 1f,
-                            out var result))
+                    if (!Physics.DistanceBetween(collider, transform.worldTransform, hit.collider, hit.transform, maxDistance,
+                            out _))
                     {
                         canBeCollectedLookup.SetComponentEnabled(hit.entity, true);
                         Debug.Log("can be collected now");
