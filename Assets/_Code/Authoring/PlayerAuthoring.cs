@@ -13,6 +13,8 @@ namespace SV
         public float rotationSharpness = 15f;
         public float thrustForce   = 1f;
         public float dragCoefficient = 0.2f;
+        public float healthMassMultiplier = 1f;
+        public float healthFlowRate = 0.1f;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
@@ -23,10 +25,12 @@ namespace SV
             AddComponent(entity, new Health { health = authoring.initialHealth });
             AddComponent(entity, new Player
                 {
-                      rotationSpeed = authoring.rotationSpeed,
-                  rotationSharpness = authoring.rotationSharpness,
-                        thrustForce = authoring.thrustForce,
-                    dragCoefficient = authoring.dragCoefficient,
+                           rotationSpeed = authoring.rotationSpeed,
+                       rotationSharpness = authoring.rotationSharpness,
+                             thrustForce = authoring.thrustForce,
+                         dragCoefficient = authoring.dragCoefficient,
+                    healthMassMultiplier = authoring.healthMassMultiplier,
+                          healthFlowRate = authoring.healthFlowRate,
                 });
         }
     }
