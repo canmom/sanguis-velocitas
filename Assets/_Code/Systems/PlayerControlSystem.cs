@@ -59,7 +59,7 @@ namespace SV
 
                 //quaternion difference should always be around the z axis, so we should be able to ignore other components
                 //value is proportional to the sine of the angle
-                var targetAngularVelocity = new float3(0f, 0f, player.rotationSpeed * math.sign(quaternionDifference.value.z));
+                var targetAngularVelocity = new float3(0f, 0f, player.rotationSpeed * math.sign(quaternionDifference.value.z) * math.sign(quaternionDifference.value.w));
                 rigidbody.ValueRW.velocity.angular = targetAngularVelocity +
                     (rigidbody.ValueRO.velocity.angular - targetAngularVelocity)
                     * math.exp( -player.rotationSharpness * SystemAPI.Time.DeltaTime);
@@ -70,12 +70,12 @@ namespace SV
                     impulseBuffer.Add(new AddImpulse(player.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
                 }
 
-                var cameraTransform = SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform;
+                //var cameraTransform = SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform;
 
-                cameraTransform.position.x = transform.position.x;
-                cameraTransform.position.y = transform.position.y;
+                //cameraTransform.position.x = transform.position.x;
+                //cameraTransform.position.y = transform.position.y;
 
-                SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform = cameraTransform;
+                //SystemAPI.GetAspect<TransformAspect>(player.camera).localTransform = cameraTransform;
 
                 // Trick to add torque (apply a linear impulse in the opposite direction of the point impulse)
                 // This example shows clockwise torque.

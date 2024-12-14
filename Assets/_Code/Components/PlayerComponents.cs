@@ -11,7 +11,6 @@ namespace SV
         public float rotationSpeed;
         public float rotationSharpness;
         public float thrustForce;
-        public Entity camera;
     }
 
     public struct Health : IComponentData

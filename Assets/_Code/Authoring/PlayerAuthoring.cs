@@ -12,7 +12,6 @@ namespace SV
         public float rotationSpeed = 1f;
         public float rotationSharpness = 15f;
         public float thrustForce   = 1f;
-        public Transform mainCamera;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
@@ -25,8 +24,7 @@ namespace SV
                 {
                       rotationSpeed = authoring.rotationSpeed,
                   rotationSharpness = authoring.rotationSharpness,
-                        thrustForce = authoring.thrustForce,
-                             camera = GetEntity(authoring.mainCamera, TransformUsageFlags.Dynamic)
+                        thrustForce = authoring.thrustForce
                 });
         }
     }
