@@ -10,6 +10,12 @@ namespace SV
     {
     }
 
+    public struct InputSettings : IComponentData
+    {
+        public float rotationSpeed;
+        public float thrustForce;
+    }
+
     public struct Health : IComponentData
     {
         public float health;
