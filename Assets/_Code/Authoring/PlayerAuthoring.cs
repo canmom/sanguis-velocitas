@@ -28,7 +28,8 @@ namespace SV
                 health     = authoring.initialHealth,
                 goalHealth = authoring.goalHealth,
             });
-            AddComponent(entity, new Player
+            AddComponent<DamageThisFrame>(entity);
+            AddComponent(                 entity, new Player
             {
                 rotationSpeed        = authoring.rotationSpeed,
                 rotationSharpness    = authoring.rotationSharpness,

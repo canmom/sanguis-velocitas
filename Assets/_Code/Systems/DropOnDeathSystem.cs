@@ -19,19 +19,21 @@ namespace SV
         public void OnCreate(ref SystemState state)
         {
             latiosWorld = state.GetLatiosWorldUnmanaged();
-            m_newQuery  = state.Fluent().With<DropOnDeath>(true).Without<DropOnDeathCleanup>(true).Build();
-            m_deadQuery = state.Fluent().With<DropOnDeathCleanup>(true).Without<DropOnDeath>(false).Build();
+            m_newQuery  = state.Fluent().With<DropOnDeath>(true).Without<DropOnDeathCleanup>().Build();
+            m_deadQuery = state.Fluent().With<DropOnDeathCleanup>(true).Without<DropOnDeath>().Build();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var deadEntities = m_deadQuery.ToEntityArray(state.WorldUpdateAllocator);
+            var deadEntities     = m_deadQuery.ToEntityArray(state.WorldUpdateAllocator);
+            int spawnedThisFrame = 0;
             foreach (var entity in deadEntities)
             {
                 var transform = state.EntityManager.GetComponentData<DropOnDeathTransformCleanup>(entity).transform;
-                foreach (var prefab in state.EntityManager.GetBuffer<DropOnDeathCleanup>(entity, true))
+                foreach (var prefab in state.EntityManager.GetBuffer<DropOnDeathCleanup>(entity, true).ToNativeArray(Allocator.Temp))
                 {
+                    spawnedThisFrame++;
                     var newSpawn                                                                       = state.EntityManager.Instantiate(prefab.prefab);
                     state.EntityManager.SetComponentData(newSpawn, new WorldTransform { worldTransform = transform });
                 }

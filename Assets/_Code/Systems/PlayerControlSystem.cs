@@ -51,10 +51,10 @@ namespace SV
 
             var aimQuaternion = quaternion.LookRotationSafe(new float3(aim.y, -aim.x, 0f), new float3(0f, 0f, 1f));
 
-            foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health) in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player,
-                                                                                                        RefRW<Health> >())
+            foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health, var damage)
+                     in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, Health, RefRW<DamageThisFrame> >())
             {
-                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.ValueRO.health, 0.001f);
+                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.health, 0.001f);
 
                 var quaternionDifference = math.mul(math.inverse(transform.rotation), aimQuaternion);
                 var angleDifference      = math.angle(quaternionDifference, quaternion.identity) - math.PIHALF;  // I don't know why our angle is 180 degrees off, but it is.
@@ -73,9 +73,7 @@ namespace SV
                 {
                     impulseBuffer.Add(new AddImpulse(player.thrustForce * transform.rightDirection * SystemAPI.Time.DeltaTime));
 
-                    // Subtract health, but only if we haven't finished the level yet.
-                    if (health.ValueRO.health < health.ValueRO.goalHealth)
-                        health.ValueRW.health -= player.healthFlowRate * SystemAPI.Time.DeltaTime;
+                    damage.ValueRW.damageFromPropulsion += player.healthFlowRate * SystemAPI.Time.DeltaTime;
                 }
 
                 impulseBuffer.Add(new AddImpulse(-rigidbody.ValueRO.velocity.linear * player.dragCoefficient * SystemAPI.Time.DeltaTime));
