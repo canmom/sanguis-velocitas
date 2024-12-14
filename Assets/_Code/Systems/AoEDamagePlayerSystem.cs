@@ -67,7 +67,11 @@ namespace SV
                     }
                 }
 
-                health.currentHealth -= damage * dt;
+                // Subtract health, but only if we haven't finished the level yet. Otherwise, clamp it.
+                if (health.currentHealth < health.maxHealth)
+                    health.currentHealth -= damage * dt;
+                else
+                    health.currentHealth = health.maxHealth;
             }
         }
     }

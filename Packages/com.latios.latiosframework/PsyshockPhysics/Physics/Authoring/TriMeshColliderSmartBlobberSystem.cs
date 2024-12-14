@@ -117,6 +117,7 @@ namespace Latios.Psyshock.Authoring.Systems
                 builder.meshName = mesh.name ?? default;
                 builders[i]      = builder;
                 m_meshCache.Add(mesh);
+                UnityEngine.Debug.Log($"Building mesh collider blob for mesh {builder.meshName}");
             }
 
             #if UNITY_EDITOR

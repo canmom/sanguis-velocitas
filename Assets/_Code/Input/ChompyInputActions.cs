@@ -48,6 +48,15 @@ namespace SV.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""251814a6-0e56-4df4-86d5-fd14f7a8e056"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Previous"",
                     ""type"": ""Button"",
                     ""id"": ""2776c80d-3c14-4091-8c56-d04ced07a2b0"",
@@ -60,7 +69,7 @@ namespace SV.Input
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -174,6 +183,17 @@ namespace SV.Input
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e1244a9-e5ce-42ed-9878-f8318d220706"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -763,6 +783,7 @@ namespace SV.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
+            m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             // UI
@@ -846,6 +867,7 @@ namespace SV.Input
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Thrust;
+        private readonly InputAction m_Player_Restart;
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
         public struct PlayerActions
@@ -854,6 +876,7 @@ namespace SV.Input
             public PlayerActions(@ChompyInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Aim => m_Wrapper.m_Player_Aim;
             public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
+            public InputAction @Restart => m_Wrapper.m_Player_Restart;
             public InputAction @Previous => m_Wrapper.m_Player_Previous;
             public InputAction @Next => m_Wrapper.m_Player_Next;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -871,6 +894,9 @@ namespace SV.Input
                 @Thrust.started += instance.OnThrust;
                 @Thrust.performed += instance.OnThrust;
                 @Thrust.canceled += instance.OnThrust;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
                 @Previous.started += instance.OnPrevious;
                 @Previous.performed += instance.OnPrevious;
                 @Previous.canceled += instance.OnPrevious;
@@ -887,6 +913,9 @@ namespace SV.Input
                 @Thrust.started -= instance.OnThrust;
                 @Thrust.performed -= instance.OnThrust;
                 @Thrust.canceled -= instance.OnThrust;
+                @Restart.started -= instance.OnRestart;
+                @Restart.performed -= instance.OnRestart;
+                @Restart.canceled -= instance.OnRestart;
                 @Previous.started -= instance.OnPrevious;
                 @Previous.performed -= instance.OnPrevious;
                 @Previous.canceled -= instance.OnPrevious;
@@ -1077,6 +1106,7 @@ namespace SV.Input
         {
             void OnAim(InputAction.CallbackContext context);
             void OnThrust(InputAction.CallbackContext context);
+            void OnRestart(InputAction.CallbackContext context);
             void OnPrevious(InputAction.CallbackContext context);
             void OnNext(InputAction.CallbackContext context);
         }
