@@ -1,0 +1,31 @@
+{
+    "name": "Latios.Transforms",
+    "rootNamespace": "Latios.Transforms",
+    "references": [
+        "Unity.Mathematics",
+        "Unity.Entities",
+        "Unity.Burst",
+        "Unity.Collections",
+        "Latios.Core",
+        "Unity.Entities.Hybrid",
+        "Unity.Transforms",
+        "Unity.Scenes",
+        "Unity.Transforms.Hybrid",
+        "Unity.NetCode"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.netcode",
+            "expression": "0.49",
+            "define": "UNITY_NETCODE"
+        }
+    ],
+    "noEngineReferences": false
+}
