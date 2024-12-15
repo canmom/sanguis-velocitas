@@ -270,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 4984140454040558154}
   healthBar: {fileID: 8301230494916184166}
+  hostText: {fileID: 5489451835112570156}
 --- !u!1 &5446634786367395405
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5209629968146238438}
-  - component: {fileID: 6292283781662252763}
+  - component: {fileID: 2857975997733217219}
   m_Layer: 0
   m_Name: AmbientSound
   m_TagString: Untagged
@@ -302,103 +303,98 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5974940368731942765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &6292283781662252763
-AudioSource:
+--- !u!114 &2857975997733217219
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5446634786367395405}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ee183f0e9f3ccc642ae898c880b4145a, type: 3}
-  m_Resource: {fileID: 8300000, guid: ee183f0e9f3ccc642ae898c880b4145a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ba3e5adc2b7534db9c106bfc26ac54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: ee183f0e9f3ccc642ae898c880b4145a, type: 3}
+  looping: 1
+  autoDestroyOnFinish: 0
+  volume: 1
+  innerRange: 5
+  outerRange: 25
+  rangeFadeMargin: 1
+  playFromBeginningAtSpawn: 0
+  voices: 0
+  useCone: 0
+  innerAngle: 30
+  outerAngle: 60
+  outerAngleVolume: 0
+--- !u!1 &6282572940116540131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6773114598882968130}
+  - component: {fileID: 5489451835112570156}
+  m_Layer: 0
+  m_Name: Host Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6773114598882968130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282572940116540131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2672859998028182803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5489451835112570156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282572940116540131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45134cb40c488034f9f188590e48f9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'The host has run out of blood reserves to sustain your continued existance.
+
+    Press
+    R to restart.'
+  fontSize: 0.4
+  wordWrap: 1
+  maxLineWidth: 3.4028235e+38
+  horizontalAlignment: 1
+  verticalAlignment: 1
+  isOrthographic: 0
+  enableKerning: 1
+  fontStyle: 0
+  fontWeight: 3
+  wordSpacing: 0
+  lineSpacing: 0
+  paragraphSpacing: 0
+  color:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+    rgba: 4278249710
+  fontsAndMaterials:
+  - font: {fileID: 11400000, guid: 2cdb4b4a272f3724986ede16626ae655, type: 2}
+    overrideMaterial: {fileID: 0}
+  gpuResident: 0
 --- !u!1 &6743444223485193118
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +474,7 @@ Transform:
   m_Children:
   - {fileID: 8787951706749435341}
   - {fileID: 3802967382120465749}
+  - {fileID: 6773114598882968130}
   m_Father: {fileID: 5974940368731942765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7079621541602838570

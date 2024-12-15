@@ -11,6 +11,7 @@ namespace SV
     {
         public EntityWithBuffer<CalliByte>     healthText;
         public EntityWith<HealthbarProperties> healthbar;
+        public EntityWithBuffer<CalliByte>     hostText;
     }
 
     public struct UiHealthbarAnimation : IComponentData
