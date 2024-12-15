@@ -18,8 +18,8 @@ namespace SV
 
     public struct Health : IComponentData
     {
-        public float health;
-        public float goalHealth;
+        public float currentHealth;
+        public float maxHealth;
     }
 
     public struct DamageThisFrame : IComponentData

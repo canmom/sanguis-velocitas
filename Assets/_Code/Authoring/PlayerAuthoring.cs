@@ -25,8 +25,8 @@ namespace SV
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new Health
             {
-                health     = authoring.initialHealth,
-                goalHealth = authoring.goalHealth,
+                currentHealth     = authoring.initialHealth,
+                maxHealth = authoring.goalHealth,
             });
             AddComponent<DamageThisFrame>(entity);
             AddComponent(                 entity, new Player

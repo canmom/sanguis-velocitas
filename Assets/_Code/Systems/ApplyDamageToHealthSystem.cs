@@ -36,21 +36,21 @@ namespace SV
             public DestroyCommandBuffer dcb;
             public void Execute(Entity entity, ref DamageThisFrame damage, ref Health health)
             {
-                if (health.health >= health.goalHealth)
+                if (health.currentHealth >= health.maxHealth)
                 {
                     // Win
                 }
                 else
                 {
-                    health.health -= damage.damageFromPropulsion;
-                    health.health -= damage.damageFromPoison;
+                    health.currentHealth -= damage.damageFromPropulsion;
+                    health.currentHealth -= damage.damageFromPoison;
 
-                    if (health.health <= 0f)
+                    if (health.currentHealth <= 0f)
                     {
                         dcb.Add(entity);
                     }
                 }
-                health.health = math.clamp(health.health, 0f, health.goalHealth);
+                health.currentHealth = math.clamp(health.currentHealth, 0f, health.maxHealth);
             }
         }
     }

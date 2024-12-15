@@ -54,7 +54,7 @@ namespace SV
             foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health, var damage)
                      in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, Health, RefRW<DamageThisFrame> >())
             {
-                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.health, 0.001f);
+                rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.currentHealth, 0.001f);
 
                 var quaternionDifference = math.mul(math.inverse(transform.rotation), aimQuaternion);
                 var angleDifference      = math.angle(quaternionDifference, quaternion.identity) - math.PIHALF;  // I don't know why our angle is 180 degrees off, but it is.
