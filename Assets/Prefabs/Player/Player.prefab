@@ -212,7 +212,7 @@ MonoBehaviour:
   thrustForce: 15
   dragCoefficient: 0.1
   healthMassMultiplier: 10
-  healthFlowRate: 0.1
+  healthFlowRate: 2
   tail: {fileID: 5159358537094794208}
 --- !u!114 &688934801551841805
 MonoBehaviour:

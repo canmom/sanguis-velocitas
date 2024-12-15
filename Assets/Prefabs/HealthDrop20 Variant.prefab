@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &804139093366836860
+--- !u!1001 &4256731079632500071
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1293732237274394769, guid: 2f5682c831fa7f345a9bc52311a85088, type: 3}
       propertyPath: m_Name
-      value: HealthDrop15 Variant
+      value: HealthDrop20 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3895846609551123891, guid: 2f5682c831fa7f345a9bc52311a85088, type: 3}
       propertyPath: m_LocalScale.x
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8585977211903792212, guid: 2f5682c831fa7f345a9bc52311a85088, type: 3}
       propertyPath: amount
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
