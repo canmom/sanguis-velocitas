@@ -33,7 +33,7 @@ namespace SV
             new Job
             {
                 childLookup         = GetBufferLookup<Child>(true),
-                audioListenerLookup = GetComponentLookup<AudioListener>(true),
+                audioListenerLookup = GetComponentLookup<CopyTransformFromEntityTag>(true),
             }.ScheduleParallel();
         }
 
@@ -41,8 +41,8 @@ namespace SV
         [BurstCompile]
         partial struct Job : IJobEntity
         {
-            [ReadOnly] public BufferLookup<Child>            childLookup;
-            [ReadOnly] public ComponentLookup<AudioListener> audioListenerLookup;
+            [ReadOnly] public BufferLookup<Child>                         childLookup;
+            [ReadOnly] public ComponentLookup<CopyTransformFromEntityTag> audioListenerLookup;
 
             public void Execute(ref DynamicBuffer<LinkedEntityGroup> leg, in DynamicBuffer<Child> children)
             {
