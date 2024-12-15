@@ -47,6 +47,11 @@ namespace SV
                 var search = Physics.AabbFrom(collider, previousTransform.worldTransform, worldTransform.position);
                 foreach (var hit in Physics.FindObjects(search, enemyLayer))
                 {
+                    if (Physics.DistanceBetween(collider, previousTransform.worldTransform, hit.collider, hit.transform, 0f, out _))
+                    {
+                        dcb.Add(hit.entity);
+                        continue;
+                    }
                     if (Physics.ColliderCast(collider, previousTransform.worldTransform, worldTransform.position, hit.collider, hit.transform, out _))
                     {
                         dcb.Add(hit.entity);

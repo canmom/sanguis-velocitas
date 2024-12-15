@@ -1,4 +1,5 @@
 using Latios.Authoring;
+using Latios.Transforms.Authoring;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -16,19 +17,24 @@ namespace SV
         public float dragCoefficient      = 0.2f;
         public float healthMassMultiplier = 1f;
         public float healthFlowRate       = 0.1f;
+
+        public PlayerTailAuthoring tail;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
     {
+        [BakingType] struct PreviousRequest : IRequestPreviousTransform { }
+
         public override void Bake(PlayerAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(entity, new Health
             {
-                health     = authoring.initialHealth,
-                goalHealth = authoring.goalHealth,
+                currentHealth = authoring.initialHealth,
+                maxHealth     = authoring.goalHealth,
             });
-            AddComponent(entity, new Player
+            AddComponent<DamageThisFrame>(entity);
+            AddComponent(                 entity, new Player
             {
                 rotationSpeed        = authoring.rotationSpeed,
                 rotationSharpness    = authoring.rotationSharpness,
@@ -36,6 +42,11 @@ namespace SV
                 dragCoefficient      = authoring.dragCoefficient,
                 healthMassMultiplier = authoring.healthMassMultiplier,
                 healthFlowRate       = authoring.healthFlowRate,
+            });
+            AddComponent<PreviousRequest>(entity);
+            AddComponent(                 entity, new PlayerTailRef
+            {
+                tail = GetEntity(authoring.tail, TransformUsageFlags.Renderable)
             });
         }
     }

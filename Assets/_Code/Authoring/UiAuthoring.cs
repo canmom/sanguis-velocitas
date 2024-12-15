@@ -10,6 +10,7 @@ namespace SV
     public class UiAuthoring : MonoBehaviour
     {
         public TextRendererAuthoring healthText;
+        public HealthbarAuthoring    healthBar;
     }
 
     public class UiAuthoringBaker : Baker<UiAuthoring>
@@ -19,9 +20,9 @@ namespace SV
             var entity = GetEntity(TransformUsageFlags.None);
             AddComponent(entity, new UiReferences
             {
-                healthText = GetEntity(authoring.healthText, TransformUsageFlags.Renderable)
+                healthText = GetEntity(authoring.healthText, TransformUsageFlags.Renderable),
+                healthbar  = GetEntity(authoring.healthBar, TransformUsageFlags.Renderable)
             });
-            AddComponent<UiValues>(entity);
         }
     }
 }
