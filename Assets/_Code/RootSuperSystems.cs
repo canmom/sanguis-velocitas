@@ -50,6 +50,7 @@ namespace SV
         protected override void CreateSystems()
         {
             GetOrCreateAndAddManagedSystem<PlayerControlSystem>();
+            GetOrCreateAndAddUnmanagedSystem<ChompSystem>();
         }
     }
 

@@ -3,6 +3,7 @@ using Latios.Psyshock;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using Latios.Kinemation;
 
 namespace SV
 {
@@ -14,6 +15,13 @@ namespace SV
         public float dragCoefficient;
         public float healthMassMultiplier;
         public float healthFlowRate;
+        public float mouthOpenDistance;
+        public float mouthClosedDistance;
+    }
+
+    public struct PlayerAnimations : IComponentData
+    {
+        public BlobAssetReference<SkeletonClipSetBlob> blob;
     }
 
     public struct Health : IComponentData
