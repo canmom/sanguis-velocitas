@@ -328,7 +328,7 @@ MonoBehaviour:
   hostEntity:
     m_hostGuid:
       serializedVersion: 2
-      Hash: 36fd864c608a7143b188bde9fb2f891e
+      Hash: 2aeee209392d3542a27f1916f9fd437f
     m_hostScene: Subscene
     m_editorSceneAsset: {fileID: 102900000, guid: a6de91bf851a1e24cb0ee45825158a3a, type: 3}
     m_editorGameObjectName: CameraEntity
@@ -444,8 +444,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018714653}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5024843, y: -33.984146, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
