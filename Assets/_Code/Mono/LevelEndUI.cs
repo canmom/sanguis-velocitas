@@ -1,4 +1,5 @@
 using Latios;
+using TMPro;
 using Unity.Entities;
 using UnityEngine;
 
@@ -8,9 +9,14 @@ namespace SV
     {
         public GameObject winThingToEnable;
         public GameObject loseThingToEnable;
-        public GameObject poisonThingToEnable;
-        public GameObject propulsionThingToEnable;
-        public GameObject poisonAndPropulsionThingToEnable;
+        public TextMeshProUGUI failureDescription;
+
+        [TextArea(1, 5)]
+        public string poisonedText;
+        [TextArea(1, 5)]
+        public string bledOutText;
+        [TextArea(1, 5)]
+        public string poisonedAndBledOutText;
 
         LatiosWorldUnmanaged latiosWorld;
 
@@ -23,18 +29,27 @@ namespace SV
         // Update is called once per frame
         void Update()
         {
+            if (!latiosWorld.sceneBlackboardEntity.HasComponent<GameState>()) {return;}
             var state = latiosWorld.sceneBlackboardEntity.GetComponentData<GameState>();
             if (state.win)
+            {
                 winThingToEnable.SetActive(true);
+            }
             else if (state.lose)
             {
                 loseThingToEnable.SetActive(true);
                 if (state.deathByPoison && state.deathByPropulsion)
-                    poisonAndPropulsionThingToEnable.SetActive(true);
+                {
+                    failureDescription.text = poisonedAndBledOutText;
+                }
                 else if (state.deathByPoison)
-                    poisonThingToEnable.SetActive(true);
+                {
+                    failureDescription.text = poisonedText;
+                }
                 else if (state.deathByPropulsion)
-                    propulsionThingToEnable.SetActive(true);
+                {
+                    failureDescription.text = bledOutText;
+                }
             }
         }
     }
