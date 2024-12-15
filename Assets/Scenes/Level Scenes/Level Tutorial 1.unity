@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: But their core has delicous nutrients for you
+      value: ...but their core is full of delicious nutrients!
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSize
@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: 'Enemies have poisenous clouds which damage you over time
+      value: 'Enemies have poisonous clouds which damage you over time...
 
 '
       objectReference: {fileID: 0}
@@ -825,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: Expeling blood will deplete your health
+      value: Expelling blood will deplete your health
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSize
@@ -1194,7 +1194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: Your goal is to absorb enough nutrients
+      value: Your goal is to absorb enough nutrients.
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSize
@@ -1311,11 +1311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: To Replenish your health you can consume blood cells
+      value: To replenish your health, consume blood cells
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSize
-      value: 11.65
+      value: 13.2
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSizeMin
