@@ -535,11 +535,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_text
-      value: Once you reach 100% health you have enough energy for mitosis
+      value: Once you reach 100% health you have enough energy for mitosis (advance
+        to the next level)
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSize
-      value: 10.1
+      value: 8.75
       objectReference: {fileID: 0}
     - target: {fileID: 2836923575011418040, guid: 0a9b715774b77b7458e8056ecad40e55, type: 3}
       propertyPath: m_fontSizeMin
@@ -1085,6 +1086,10 @@ PrefabInstance:
     - target: {fileID: 5608978617401180694, guid: 4a527852f65f5fb43a76f13e44511f12, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390039558916330324, guid: 4a527852f65f5fb43a76f13e44511f12, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 8470871459913575983, guid: 4a527852f65f5fb43a76f13e44511f12, type: 3}
       propertyPath: m_Name

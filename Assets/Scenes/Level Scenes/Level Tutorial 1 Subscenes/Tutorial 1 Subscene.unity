@@ -2515,6 +2515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8341,6 +8345,10 @@ PrefabInstance:
     - target: {fileID: 3091352535683433974, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15929,6 +15937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16047,6 +16059,10 @@ PrefabInstance:
     - target: {fileID: 3091352535683433974, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17776,6 +17792,10 @@ PrefabInstance:
     - target: {fileID: 3091352535683433974, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29307,6 +29327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33247,6 +33271,10 @@ PrefabInstance:
     - target: {fileID: 3091352535683433974, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
       propertyPath: m_Name
       value: HealthDrop20 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39143,6 +39171,10 @@ PrefabInstance:
     - target: {fileID: 3091352535683433974, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
       propertyPath: m_Name
       value: HealthDrop20 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491425705197822259, guid: 8e82b889c39de6243b99d696902b209d, type: 3}
+      propertyPath: amount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
