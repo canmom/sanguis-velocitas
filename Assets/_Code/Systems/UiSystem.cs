@@ -43,7 +43,7 @@ namespace SV
             public void Execute(in Health health, in DamageThisFrame damageThisFrame, in UiReferences references)
             {
                 var wholeHealth = (int)math.floor(health.currentHealth);
-                var partialHealth = (int)((health.currentHealth - wholeHealth) * 100);
+                var partialHealth = (int)((health.currentHealth - wholeHealth) * 10);
                 // Text
                 FixedString512Bytes temp
                     = $"{wholeHealth}.{partialHealth} / {(int)math.round(health.maxHealth)}";

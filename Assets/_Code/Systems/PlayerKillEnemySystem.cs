@@ -11,7 +11,7 @@ using Unity.Mathematics;
 namespace SV
 {
     [BurstCompile]
-    public partial struct PlayerKillEnemeySystem : ISystem
+    public partial struct PlayerKillEnemySystem : ISystem
     {
         LatiosWorldUnmanaged           latiosWorld;
         BuildCollisionLayerTypeHandles handles;

@@ -1,9 +1,9 @@
 using Latios;
+using Latios.Kinemation;
 using Latios.Psyshock;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
-using Latios.Kinemation;
 
 namespace SV
 {
@@ -22,6 +22,12 @@ namespace SV
     public struct PlayerAnimations : IComponentData
     {
         public BlobAssetReference<SkeletonClipSetBlob> blob;
+        public float                                   cosFov;
+        public float                                   chompAnticipateTime;
+        public float                                   openTime;
+        public float                                   closeDistance;
+        public float                                   animationTime;
+        public float                                   snapMultiplier;
     }
 
     public struct Health : IComponentData

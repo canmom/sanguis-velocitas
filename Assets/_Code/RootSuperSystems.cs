@@ -51,7 +51,8 @@ namespace SV
         protected override void CreateSystems()
         {
             GetOrCreateAndAddManagedSystem<PlayerControlSystem>();
-            GetOrCreateAndAddUnmanagedSystem<ChompSystem>();
+            //GetOrCreateAndAddUnmanagedSystem<ChompSystem>();
+            GetOrCreateAndAddUnmanagedSystem<ChompSystem2>();
             GetOrCreateAndAddUnmanagedSystem<EnemyFollowsPlayerSystem>();
         }
     }
@@ -66,7 +67,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<DropOnDeathCopyTransformSystem>();
             GetOrCreateAndAddUnmanagedSystem<CollectHealthDropSystem>();
             GetOrCreateAndAddUnmanagedSystem<ActivateHealthDropSystem>();
-            GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemeySystem>();
+            GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemySystem>();
             GetOrCreateAndAddUnmanagedSystem<AoEDamagePlayerSystem>();
             GetOrCreateAndAddUnmanagedSystem<ApplyDamageToHealthSystem>();
             GetOrCreateAndAddUnmanagedSystem<PlayerThrustSoundSystem>();

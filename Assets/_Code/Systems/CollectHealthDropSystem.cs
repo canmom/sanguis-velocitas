@@ -78,7 +78,6 @@ namespace SV
             {
                 var healthDrop  = healthDropLookup[hitEntity];
                 health.heal    += healthDrop.amount;
-                Debug.Log("collected health drop");
                 dcb.Add(hitEntity);
             }
         }

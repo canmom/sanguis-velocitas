@@ -19,6 +19,7 @@ namespace SV
         public float healthFlowRate       = 0.1f;
 
         public PlayerTailAuthoring tail;
+        public AudioSource thrustSoundSource;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
