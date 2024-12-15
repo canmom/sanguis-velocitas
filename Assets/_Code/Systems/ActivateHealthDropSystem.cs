@@ -80,7 +80,6 @@ namespace SV
             void SetCanBeCollected(Entity entity)
             {
                 canBeCollectedLookup.SetComponentEnabled(entity, true);
-                Debug.Log("can be collected now");
             }
         }
     }

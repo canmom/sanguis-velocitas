@@ -7,6 +7,7 @@ namespace SV
     public class HealthDropAuthoring : MonoBehaviour
     {
         public float amount;
+        public bool canBeCollectedAtSpawn;
         internal class HealthDropBaker : Baker<HealthDropAuthoring>
         {
             public override void Bake(HealthDropAuthoring authoring)
@@ -18,7 +19,7 @@ namespace SV
                 });
                 
                 AddComponent<CanBeCollected>(entity);
-                SetComponentEnabled<CanBeCollected>(entity, false);
+                SetComponentEnabled<CanBeCollected>(entity, authoring.canBeCollectedAtSpawn);
             }
         }
     }

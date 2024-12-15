@@ -13,7 +13,7 @@ namespace SV
         public void OnUpdate(ref SystemState state)
         {
             var playerQuery = SystemAPI.QueryBuilder().WithAll<Player>().WithAll<WorldTransform>().Build();
-            var playerTransform = playerQuery.GetSingleton<WorldTransform>();
+            if (!playerQuery.TryGetSingleton<WorldTransform>(out var playerTransform)) return;
             new EnemyFollowPlayerJob()
             {
                 playerPosition = playerTransform.position,

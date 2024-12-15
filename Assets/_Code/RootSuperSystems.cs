@@ -66,7 +66,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<DropOnDeathCopyTransformSystem>();
             GetOrCreateAndAddUnmanagedSystem<CollectHealthDropSystem>();
             GetOrCreateAndAddUnmanagedSystem<ActivateHealthDropSystem>();
-            GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemeySystem>();
+            GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemySystem>();
             GetOrCreateAndAddUnmanagedSystem<AoEDamagePlayerSystem>();
             GetOrCreateAndAddUnmanagedSystem<ApplyDamageToHealthSystem>();
             GetOrCreateAndAddUnmanagedSystem<PlayerThrustSoundSystem>();
