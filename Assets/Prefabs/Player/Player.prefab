@@ -168,6 +168,7 @@ Transform:
   m_Children:
   - {fileID: 1953755693718174584}
   - {fileID: 6529742156412338697}
+  - {fileID: 626388760666865133}
   - {fileID: 5974940368731942765}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -212,6 +213,7 @@ MonoBehaviour:
   dragCoefficient: 0.1
   healthMassMultiplier: 10
   healthFlowRate: 0.1
+  tail: {fileID: 5159358537094794208}
 --- !u!114 &688934801551841805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +269,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 4984140454040558154}
   healthBar: {fileID: 8301230494916184166}
+--- !u!1 &6743444223485193118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626388760666865133}
+  - component: {fileID: 5159358537094794208}
+  m_Layer: 0
+  m_Name: Tail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &626388760666865133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743444223485193118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.67, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2877844786167243211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5159358537094794208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743444223485193118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95832403184bb1c4c8c773b9152a920c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefab: {fileID: 4282874599786311579, guid: 84fa2d406865a3641bee80106efba2ae, type: 3}
+  period: 0.727
+  periodJitter: 0.01
+  volumeJitter: 0.25
 --- !u!1 &6940858892634433081
 GameObject:
   m_ObjectHideFlags: 0

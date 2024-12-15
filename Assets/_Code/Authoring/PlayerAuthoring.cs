@@ -17,6 +17,8 @@ namespace SV
         public float dragCoefficient      = 0.2f;
         public float healthMassMultiplier = 1f;
         public float healthFlowRate       = 0.1f;
+
+        public PlayerTailAuthoring tail;
     }
 
     public class PlayerAuthoringBaker : Baker<PlayerAuthoring>
@@ -42,6 +44,10 @@ namespace SV
                 healthFlowRate       = authoring.healthFlowRate,
             });
             AddComponent<PreviousRequest>(entity);
+            AddComponent(                 entity, new PlayerTailRef
+            {
+                tail = GetEntity(authoring.tail, TransformUsageFlags.Renderable)
+            });
         }
     }
 }

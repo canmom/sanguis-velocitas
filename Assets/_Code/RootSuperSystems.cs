@@ -68,6 +68,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<PlayerKillEnemeySystem>();
             GetOrCreateAndAddUnmanagedSystem<AoEDamagePlayerSystem>();
             GetOrCreateAndAddUnmanagedSystem<ApplyDamageToHealthSystem>();
+            GetOrCreateAndAddUnmanagedSystem<PlayerThrustSoundSystem>();
             GetOrCreateAndAddUnmanagedSystem<UiSystem>();
         }
     }

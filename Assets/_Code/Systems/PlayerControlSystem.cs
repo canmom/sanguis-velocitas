@@ -51,8 +51,8 @@ namespace SV
 
             var aimQuaternion = quaternion.LookRotationSafe(new float3(aim.y, -aim.x, 0f), new float3(0f, 0f, 1f));
 
-            foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health, var damage)
-                     in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, Health, RefRW<DamageThisFrame> >())
+            foreach ((var rigidbody, var impulseBuffer, var transform, var player, var health, var damage, var tailRef)
+                     in Query<RefRW<RigidBody>, DynamicBuffer<AddImpulse>, WorldTransform, Player, Health, RefRW<DamageThisFrame>, PlayerTailRef>())
             {
                 rigidbody.ValueRW.inverseMass = math.max(player.healthMassMultiplier / health.currentHealth, 0.001f);
 
@@ -75,6 +75,7 @@ namespace SV
 
                     damage.ValueRW.damageFromPropulsion += player.healthFlowRate * SystemAPI.Time.DeltaTime;
                 }
+                SystemAPI.SetComponent(tailRef.tail, new PlayerTail { isThrusting = thrust > 0f });
 
                 impulseBuffer.Add(new AddImpulse(-rigidbody.ValueRO.velocity.linear * player.dragCoefficient * SystemAPI.Time.DeltaTime));
             }

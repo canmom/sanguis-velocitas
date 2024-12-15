@@ -32,5 +32,24 @@ namespace SV
     public struct PlayerAttackColliderTag : IComponentData
     {
     }
+
+    public struct PlayerTailRef : IComponentData
+    {
+        public EntityWith<PlayerTail> tail;
+    }
+
+    public struct PlayerTail : IComponentData
+    {
+        public bool isThrusting;
+    }
+
+    public struct PlayerTailSound : IComponentData
+    {
+        public EntityWith<Prefab> soundPrefab;
+        public float              period;
+        public float              currentTime;
+        public float              periodJitter;
+        public float              volumeJitter;
+    }
 }
 
