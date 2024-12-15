@@ -73,6 +73,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<PlayerThrustSoundSystem>();
             GetOrCreateAndAddUnmanagedSystem<UiSystem>();
             GetOrCreateAndAddUnmanagedSystem<CleanupPlayerCameraSystem>();
+            GetOrCreateAndAddManagedSystem<DriveParticlesSystem>();
         }
     }
 }
