@@ -72,6 +72,7 @@ namespace SV
             GetOrCreateAndAddUnmanagedSystem<ApplyDamageToHealthSystem>();
             GetOrCreateAndAddUnmanagedSystem<PlayerThrustSoundSystem>();
             GetOrCreateAndAddUnmanagedSystem<UiSystem>();
+            GetOrCreateAndAddUnmanagedSystem<CleanupPlayerCameraSystem>();
         }
     }
 }
