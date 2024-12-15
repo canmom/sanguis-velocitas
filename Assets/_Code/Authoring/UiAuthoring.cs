@@ -11,6 +11,7 @@ namespace SV
     {
         public TextRendererAuthoring healthText;
         public HealthbarAuthoring    healthBar;
+        public TextRendererAuthoring hostText;
     }
 
     public class UiAuthoringBaker : Baker<UiAuthoring>
@@ -21,7 +22,8 @@ namespace SV
             AddComponent(entity, new UiReferences
             {
                 healthText = GetEntity(authoring.healthText, TransformUsageFlags.Renderable),
-                healthbar  = GetEntity(authoring.healthBar, TransformUsageFlags.Renderable)
+                healthbar  = GetEntity(authoring.healthBar, TransformUsageFlags.Renderable),
+                hostText   = GetEntity(authoring.hostText, TransformUsageFlags.Renderable),
             });
         }
     }
