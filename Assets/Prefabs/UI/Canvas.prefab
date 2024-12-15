@@ -120,9 +120,9 @@ MonoBehaviour:
   winThingToEnable: {fileID: 6351758383334283924}
   loseThingToEnable: {fileID: 742753501741598517}
   failureDescription: {fileID: 235972575135961964}
-  poisonedText: You got poisened to death
+  poisonedText: You got poisoned to death
   bledOutText: You bled out
-  poisonedAndBledOutText: You bled out while beeing poisened
+  poisonedAndBledOutText: You bled out while being poisoned
 --- !u!114 &8616385746046701400
 MonoBehaviour:
   m_ObjectHideFlags: 0
