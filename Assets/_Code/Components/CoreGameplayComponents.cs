@@ -29,5 +29,20 @@ namespace SV
     {
         public float dps;
     }
+
+    public struct RequiresSetup : IComponentData
+    {
+        
+    }
+
+    public struct HealthDrop : IComponentData
+    {
+        public float amount;
+    }
+
+    public struct CanBeCollected : IComponentData, IEnableableComponent
+    {
+        
+    }
 }
 

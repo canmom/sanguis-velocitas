@@ -18,14 +18,15 @@ namespace SV
 
     public struct Health : IComponentData
     {
-        public float health;
-        public float goalHealth;
+        public float currentHealth;
+        public float maxHealth;
     }
 
     public struct DamageThisFrame : IComponentData
     {
         public float damageFromPropulsion;
         public float damageFromPoison;
+        public float heal;
     }
 
     public struct PlayerAttackColliderTag : IComponentData
