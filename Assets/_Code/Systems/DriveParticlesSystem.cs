@@ -17,15 +17,15 @@ namespace SV
             CompleteDependency();
             foreach ((var playerTail, var particles) in Query<PlayerTail, SystemAPI.ManagedAPI.UnityEngineComponent<UnityEngine.ParticleSystem> >())
             {
+                var em = particles.Value.emission;
                 if (playerTail.isThrusting)
                 {
-                    if (!particles.Value.isPlaying)
-                        particles.Value.Play();
+                    em.enabled = true;
+                        
                 }
                 else
                 {
-                    if (particles.Value.isPlaying)
-                        particles.Value.Stop();
+                    em.enabled = false;
                 }
             }
         }
