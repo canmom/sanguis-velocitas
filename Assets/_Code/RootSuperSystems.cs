@@ -51,7 +51,8 @@ namespace SV
         protected override void CreateSystems()
         {
             GetOrCreateAndAddManagedSystem<PlayerControlSystem>();
-            GetOrCreateAndAddUnmanagedSystem<ChompSystem>();
+            //GetOrCreateAndAddUnmanagedSystem<ChompSystem>();
+            GetOrCreateAndAddUnmanagedSystem<ChompSystem2>();
             GetOrCreateAndAddUnmanagedSystem<EnemyFollowsPlayerSystem>();
         }
     }

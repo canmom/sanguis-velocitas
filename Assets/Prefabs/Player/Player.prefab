@@ -214,6 +214,7 @@ MonoBehaviour:
   healthMassMultiplier: 10
   healthFlowRate: 2
   tail: {fileID: 5159358537094794208}
+  thrustSoundSource: {fileID: 0}
 --- !u!114 &688934801551841805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +744,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biteAnimation: {fileID: -3880581976594992817, guid: 8c4fecb53dafc944d8cf6ca79001ac40, type: 3}
+  biteTargetFov: 90
+  anticipationTime: 0.7
+  openMouthTime: 0.175
+  closeMouthDistance: 0.2
+  snapMultiplier: 4
 --- !u!4 &1953755693718174584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c4fecb53dafc944d8cf6ca79001ac40, type: 3}
