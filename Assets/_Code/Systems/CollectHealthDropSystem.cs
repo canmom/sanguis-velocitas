@@ -1,34 +1,35 @@
-﻿using Latios;
+﻿using Collider = Latios.Psyshock.Collider;
+using Latios;
 using Latios.Psyshock;
 using Latios.Psyshock.Anna;
 using Latios.Transforms;
+using Physics = Latios.Psyshock.Physics;
+using static Unity.Entities.SystemAPI;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using static Unity.Entities.SystemAPI;
-using Collider = Latios.Psyshock.Collider;
-using Physics = Latios.Psyshock.Physics;
 
 namespace SV
 {
     public partial struct CollectHealthDropSystem : ISystem
     {
-        LatiosWorldUnmanaged latiosWorld;
+        LatiosWorldUnmanaged           latiosWorld;
         BuildCollisionLayerTypeHandles handles;
-        EntityQuery query;
+        EntityQuery                    query;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             latiosWorld = state.GetLatiosWorldUnmanaged();
-            handles = new BuildCollisionLayerTypeHandles(ref state);
-            query = state.Fluent().With<HealthDrop>(true).WithEnabled<CanBeCollected>().PatchQueryForBuildingCollisionLayer().Build();
+            handles     = new BuildCollisionLayerTypeHandles(ref state);
+            query       = state.Fluent().With<HealthDrop>(true).WithEnabled<CanBeCollected>().PatchQueryForBuildingCollisionLayer().Build();
         }
 
         [BurstCompile]
-        public void OnDestroy(ref SystemState state) { }
+        public void OnDestroy(ref SystemState state) {
+        }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
@@ -36,13 +37,13 @@ namespace SV
             var settings = latiosWorld.GetPhysicsSettings();
             handles.Update(ref state);
             state.Dependency = Physics.BuildCollisionLayer(query, handles)
-                                      .WithSettings(settings.collisionLayerSettings)
-                                      .ScheduleParallel(out var layer, state.WorldUpdateAllocator, state.Dependency);
+                               .WithSettings(settings.collisionLayerSettings)
+                               .ScheduleParallel(out var layer, state.WorldUpdateAllocator, state.Dependency);
             new Job
             {
-                layer = layer,
+                layer            = layer,
                 healthDropLookup = GetComponentLookup<HealthDrop>(true),
-                dcb = latiosWorld.syncPoint.CreateDestroyCommandBuffer(),
+                dcb              = latiosWorld.syncPoint.CreateDestroyCommandBuffer(),
             }.Schedule();
         }
 
@@ -54,25 +55,33 @@ namespace SV
 
             [ReadOnly]
             public ComponentLookup<HealthDrop> healthDropLookup;
-            public DestroyCommandBuffer      dcb;
+            public DestroyCommandBuffer        dcb;
 
-            
-            public void Execute(ref Health health, in WorldTransform transform, in Collider collider, in Player player)
+            public void Execute(ref DamageThisFrame health, in WorldTransform transform, in PreviousTransform previous, in Collider collider, in Player player)
             {
-                var search = Physics.AabbFrom(collider, transform.worldTransform);
+                var search = Physics.AabbFrom(collider, previous.worldTransform, transform.position);
                 foreach (var hit in Physics.FindObjects(search, layer))
                 {
-                    if (Physics.DistanceBetween(collider, transform.worldTransform, hit.collider, hit.transform, 0f,
-                            out _))
+                    if (Physics.DistanceBetween(collider, previous.worldTransform, hit.collider, hit.transform, 0f, out _))
                     {
-                        var healthDrop = healthDropLookup[hit.entity];
-                        health.currentHealth = math.min(health.currentHealth + healthDrop.amount, health.maxHealth);
-                        Debug.Log("collected health drop");
-                        dcb.Add(hit.entity);
+                        AddHealth(hit.entity, ref health);
+                        continue;
+                    }
+                    if (Physics.ColliderCast(collider, previous.worldTransform, transform.position, hit.collider, hit.transform, out _))
+                    {
+                        AddHealth(hit.entity, ref health);
                     }
                 }
+            }
 
+            void AddHealth(Entity hitEntity, ref DamageThisFrame health)
+            {
+                var healthDrop  = healthDropLookup[hitEntity];
+                health.heal    += healthDrop.amount;
+                Debug.Log("collected health drop");
+                dcb.Add(hitEntity);
             }
         }
     }
 }
+

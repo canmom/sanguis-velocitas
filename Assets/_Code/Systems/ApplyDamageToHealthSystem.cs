@@ -36,6 +36,7 @@ namespace SV
             public DestroyCommandBuffer dcb;
             public void Execute(Entity entity, ref DamageThisFrame damage, ref Health health)
             {
+                health.currentHealth += damage.heal;
                 if (health.currentHealth >= health.maxHealth)
                 {
                     // Win

@@ -26,6 +26,7 @@ namespace SV
     {
         public float damageFromPropulsion;
         public float damageFromPoison;
+        public float heal;
     }
 
     public struct PlayerAttackColliderTag : IComponentData

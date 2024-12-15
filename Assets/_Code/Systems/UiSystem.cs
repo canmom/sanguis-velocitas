@@ -1,12 +1,12 @@
 using Latios;
 using Latios.Calligraphics;
 using Latios.Transforms;
+using static Unity.Entities.SystemAPI;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
-using static Unity.Entities.SystemAPI;
 
 namespace SV
 {
@@ -24,35 +24,42 @@ namespace SV
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            state.CompleteDependency();
-            ref var uiValues = ref GetSingletonRW<UiValues>().ValueRW;
-            var playerQuery = QueryBuilder().WithAll<Player>().WithAll<Health>().Build();
-            var health = playerQuery.GetSingleton<Health>();
-            uiValues.health = health.currentHealth;
-            uiValues.goalHealth = health.maxHealth;
-
-
             new Job
             {
-                textLookup = GetBufferLookup<CalliByte>(false)
+                textLookup      = GetBufferLookup<CalliByte>(false),
+                materialLookup  = GetComponentLookup<HealthbarProperties>(false),
+                animationLookup = GetComponentLookup<UiHealthbarAnimation>(false),
             }.Schedule();
         }
 
         [BurstCompile]
         partial struct Job : IJobEntity
         {
-            public BufferLookup<CalliByte> textLookup;
+            public BufferLookup<CalliByte>               textLookup;
+            public ComponentLookup<HealthbarProperties>  materialLookup;
+            public ComponentLookup<UiHealthbarAnimation> animationLookup;
 
-            public void Execute(in UiValues values, in UiReferences references)
+            public void Execute(in Health health, in DamageThisFrame damageThisFrame, in UiReferences references)
             {
-                var fullInt = (int)math.floor(values.health);
-                var fraction = (int)((values.health - fullInt) * 100.0f + 0.5f);
-
-                FixedString512Bytes temp = $"Health: {fullInt}.{fraction}   Goal: {values.goalHealth}";
-                var healthText = new CalliString(textLookup[references.healthText]);
+                // Text
+                FixedString512Bytes temp       = $"{(int)math.round(health.currentHealth)} / {(int)math.round(health.maxHealth)}";
+                var                 healthText = new CalliString(textLookup[references.healthText]);
                 healthText.Clear();
                 healthText.Append(temp);
+
+                // Healthbar
+                ref var material  = ref materialLookup.GetRefRW(references.healthbar).ValueRW;
+                ref var animation = ref animationLookup.GetRefRW(references.healthbar).ValueRW;
+
+                material.healthFraction               = health.currentHealth / health.maxHealth;
+                material.propulsionAnimationFraction += math.select(-animation.propulsionRampDownRate, animation.propulsionRampUpRate, damageThisFrame.damageFromPropulsion > 0f);
+                material.poisonAnimationFraction     += math.select(-animation.poisonRampDownRate, animation.poisonRampUpRate, damageThisFrame.damageFromPoison > 0f);
+                material.gainAnimationFraction       -= animation.gainRate;
+                material.propulsionAnimationFraction  = math.saturate(material.propulsionAnimationFraction);
+                material.poisonAnimationFraction      = math.saturate(material.poisonAnimationFraction);
+                material.gainAnimationFraction        = math.select(math.saturate(material.gainAnimationFraction), 1f, damageThisFrame.heal > 0f);
             }
         }
     }
 }
+
